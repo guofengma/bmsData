@@ -1,0 +1,5 @@
+jdbc.url = jdbc:mysql://rm-wz977ob0y3910692zzo.mysql.rds.aliyuncs.com/bmsover?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+jdbc.user = bms2018
+jdbc.password = K$ai%faizhuaY
+jdbc.devMode = true
+

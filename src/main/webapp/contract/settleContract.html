@@ -1,0 +1,581 @@
+﻿<!DOCTYPE html>
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+<meta charset="utf-8">
+<title>应结清合同数据统计</title>
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- Mobile Meta -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Favicon -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+<link href="css/animations.css5" rel="stylesheet">
+<link href="css/settlecontract.css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
+
+</head>
+
+<body ng-app="myApp" ng-controller="customersCtrl">
+	<!-- banner start -->
+	<div class="banner-caption clearfix">
+		<div id="title">
+			<div class="caption-title clearfix">
+				<i class="title-left"><img src="img/title-left.png"></i>
+				<p class="title-left-title-font">应结清合同数据统计</p>
+				<i class="title-left"><img src="img/title-right.png"></i>
+			</div>
+			<div class="title-date" style="height: 40px;">
+			   <p style="height: 40px; text-align: center;">
+					<span class="ym-menu">
+						<button type="button" class="btn btn-primary" value="day">当天</button>
+						<button type="button" class="btn btn-primary" value="week">本周</button>
+						<button type="button" class="btn btn-primary" value="month">本月</button>
+					</span>
+				</p>
+			  
+			</div>
+		</div>
+		<div id="main">
+			<div class="col-md-12">
+				<div class="row">
+					<div id="title01" class="col-xs-12 col-sm-12 col-md-4">
+					    <!-- 应结清合同数量 -->
+						<div class="data-box1 clearfix" id="box01">
+							<i class="topL"></i> <i class="topR"></i> <i class="bottomL"></i>
+							<i class="bottomR"></i>
+							<div class="data-title" >
+								<b class="data-title-left" >[</b> <span>应结清合同数量</span> <b
+									class="data-title-right">]</b>
+							</div>
+							<div id="box1_top">
+								<div id="box0" class="box-echart "></div>
+							</div>
+							
+						</div>
+						<!-- //应结清合同数量 -->
+						 <!-- 已结清合同数量 -->
+						<div class="data-box1" id="box02" style="margin-top: 30px;">
+							<i class="topL"></i> <i class="topR"></i> <i class="bottomL"></i>
+							<i class="bottomR"></i>
+							<div class="data-title" >
+								<b class="data-title-left">[</b> <span>已结清合同数量</span> <b
+									class="data-title-right">]</b>
+							</div>
+								<div id="box1" class="box-echart "></div>
+						</div>
+						<!-- //已结清合同数量 -->
+						
+						<!-- 未结清合同数量 -->
+						<div class="data-box1" id="box03" style="margin-top: 30px;">
+							<i class="topL"></i> <i class="topR"></i> <i class="bottomL"></i>
+							<i class="bottomR"></i>
+							<div class="data-title" >
+								<b class="data-title-left">[</b> <span>未结清合同数量</span> <b
+									class="data-title-right">]</b>
+							</div>
+								<div id="box2" class="box-echart"></div>
+							
+						</div>
+						<!-- //未结清合同数量 -->
+					</div>
+					<div id="title02"
+						class="col-xs-6 col-sm-6 col-md-4 panel-top panel-bottom">
+						<!--所有门店  -->
+						<div class="data-box1 box1-back" id="box04">
+							<i class="topL"></i> <i class="topR"></i> <i class="bottomL"></i>
+							<i class="bottomR"></i>
+							<div class="data-title" style="width: 140px">
+								<b class="data-title-left">[</b> <span>所有门店</span> <b
+									class="data-title-right">]</b>
+							</div>
+							<div id="store" class="box-echart-china"></div>
+						</div>
+						<!--//所有门店  -->
+						<!--当天详情 -->
+						<div class="data-box1" id="box05" style="margin-top: 30px;" data-toggle="modal" data-target="#myModal">
+							<i class="topL"></i> <i class="topR"></i> <i class="bottomL"></i>
+							<i class="bottomR"></i>
+							<div class="data-title" style="width:227px">
+								<b class="data-title-left">[</b> <span>当天数据详情</span> <b
+									class="data-title-right">]</b>
+							</div>
+							<div class="box-echart-middle" style="overflow:auto">
+								<div id="table0" class="table-responsive" style="color: #fff; display:display;">
+									<table class="table" style="font-size: x-small">
+										<caption>应结清合同</caption>
+										<thead>
+											<tr>
+												<th>门店</th>
+												<th>合同编号</th>
+												<th>姓名</th>
+												<th>身份证</th>
+												<th>手机号码</th>
+												<th>借款金额</th>
+											</tr>
+										</thead>
+										<tbody>
+										
+										</tbody>
+									</table>
+								</div>  	
+								<div id="table1" class="table-responsive" style="overflow:auto;color: #fff; display:none">
+									<table class="table" style="font-size: x-small">
+										<caption>已结清合同</caption>
+										<thead>
+											<tr>
+												<th>门店</th>
+												<th>合同编号</th>
+												<th>姓名</th>
+												<th>身份证</th>
+												<th>手机号码</th>
+												<th>借款金额</th>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								</div>  	
+								<div id="table2" class="table-responsive" style="overflow:auto;color: #fff; display:none">
+									<table class="table" style="font-size: x-small">
+										<caption>未结清合同</caption>
+										<thead>
+											<tr>
+												<th>门店</th>
+												<th>合同编号</th>
+												<th>姓名</th>
+												<th>身份证</th>
+												<th>手机号码</th>
+												<th>借款金额</th>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								</div>  	
+							
+							</div>
+							
+						</div>
+						<!--//当天详情 -->
+					</div>
+					<div id="title03" class="col-xs-12 col-sm-12 col-md-4 ">
+						<div class="data-box1" id="box06">
+							<i class="topL"></i> <i class="topR"></i> <i class="bottomL"></i>
+							<i class="bottomR"></i>
+							<div class="data-title">
+								<b class="data-title-left">[</b> <span>应结清合同金额</span> <b
+									class="data-title-right">]</b>
+							</div>
+							<div id="box3" class="box-echart "></div>
+						</div>
+						<div class="data-box1" id="box07" style="margin-top: 30px;">
+							<i class="topL"></i> <i class="topR"></i> <i class="bottomL"></i>
+							<i class="bottomR"></i>
+							<div class="data-title">
+								<b class="data-title-left">[</b> <span>已结清合同金额</span> <b
+									class="data-title-right">]</b>
+							</div>
+							<div id="box4" class="box-echart"></div>
+						</div>
+						<div class="data-box1" id="box08" style="margin-top: 30px;">
+							<i class="topL"></i> <i class="topR"></i> <i class="bottomL"></i>
+							<i class="bottomR"></i>
+							<div class="data-title">
+								<b class="data-title-left">[</b> <span>未结清合同金额</span> <b
+									class="data-title-right">]</b>
+							</div>
+							<div id="box5" class="box-echart"></div>
+						</div>
+					</div>
+				</div>
+				<!--asad-->
+			</div>
+		</div>
+
+
+	</div>
+	
+	
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content"  style="width:900px;height:700px;overflow:auto;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" 
+							aria-hidden="true">×
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						当天数据详情
+					</h4>
+				</div>
+				<div class="modal-body">
+					按下 ESC 按钮退出。
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" 
+							data-dismiss="modal">关闭
+					</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+	
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/echarts.min.js"></script>
+	<!-- <script type="text/javascript" src="js/angular.min.js"></script>  -->
+	<script type="text/javascript" src="js/settleContract.js"></script>
+	 <script>
+		$(document).ready(function() {
+			$(".data-title").each(function(index){
+				var span = $(this).find("span");
+				$(this).css("width", $(span).outerWidth()+60)
+			});
+			
+			var keys = ["must_settle_contract_num", "alr_settle_contract_num" ,"uncleared_num",
+					"must_settle_contract_principal","alr_settle_contract_principal","uncleared_contract_principal"];
+			var urls = ["settleContract/day", "settleContract/weekAndMonth"];
+			
+			var myChart = echarts.init(document.getElementById("store"));
+			
+			//初始加载门店
+			$.ajax({
+				type : "get",
+				url : 'settleContract/initStores',
+				dataType : "json",
+				success : function(json) {
+					console.log(json);
+					var stores = json.stores;
+					var legendData = new Array();
+					var seriesData = new Array();
+					for (var i = 0; i < stores.length; i++) {
+						var name = stores[i].short_name;
+						var id = stores[i].id;
+						
+						 var obj = new Object();
+				            obj.name = name;
+				            obj.value = 0;
+				            obj.id = id;
+				         seriesData.push(obj);
+				         legendData.push(name);
+					}
+					
+					//初始加载门店
+					var pieOption = {
+						    title : {
+						        text: '',
+						        subtext: '',
+						        x:'center'
+						    },
+						    tooltip : {
+						        trigger: 'item',
+						        formatter: "{a} <br/>{b} : {c} ({d}%)"
+						    },
+						    legend: {
+						        type: 'scroll',
+						        orient: 'vertical',
+						        right: 10,
+						        top: 20,
+						        bottom: 20,
+						        data: legendData,
+
+						        selected: {}
+						    },
+						    series : [
+						        {
+						            name: '门店',
+						            type: 'pie',
+						            radius : '55%',
+						            center: ['40%', '50%'],
+						            data: seriesData,
+						            itemStyle: {
+						                emphasis: {
+						                    shadowBlur: 10,
+						                    shadowOffsetX: 0,
+						                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+						                }
+						            }
+						        }
+						    ]
+						};
+					myChart.setOption(pieOption);
+					
+					initDay(myChart.getOption());
+				}
+			});
+			
+			function initDay(option){
+				var storeName = option.series[0].data[4].name;
+				var id = option.series[0].data[4].id;
+				$(".ym-menu button:first").removeClass("btn-primary").addClass("btn-success");
+				
+				url = urls[0];
+				var data = {"type":3, "value":id, "selected":""};
+				day(url, data, storeName);
+			}
+			
+			//点击事件
+			myChart.on("click", function(e) {
+				var storeId = e.data.id;
+				var storeName = e.data.name;
+				var selected = $(".ym-menu button[class *= 'btn-success']").attr("value");
+				var url;
+				if(selected != null){
+					if(selected != "day"){
+						url = urls[1];
+						var data = {"type":3, "value":storeId, "selected":selected};
+						weekAndMonth(url, data, storeName);
+					}else{
+						url = urls[0];
+						var data = {"type":3, "value":storeId, "selected":selected};
+						day(url, data, storeName);
+					}
+				}else{
+					alert("请选择时间！！");
+				}
+				
+		     });
+			
+			//时间选择
+			$(".ym-menu button").on("click", function(){
+				$(this).removeClass("btn-primary").addClass("btn-success");
+				$(this).siblings("button").removeClass("btn-success").addClass("btn-primary");
+				
+				var value = $(this).attr("value");
+				if(value == "day"){
+					$("#box05").show();
+				}else{
+					$("#box05").hide();
+				}
+			})
+			
+			
+			function weekAndMonth(url, data, storeName){
+				$.post(url, data, function(response){
+					console.log(response);
+					
+					if(response.show_res_code == "-1"){
+	 					alert(response.show_res_error);
+	 				}else{
+	 					var legendData = new Array();
+	 					
+	 					var list = response.list;
+	 					for (var i = 0; i < list.length; i++) {
+							var data = JSON.parse(list[i]);
+							var xAxisData = data.show_res_body.month;
+							var seriesData = data.show_res_body.data
+							
+							var paras = {"storeName":storeName, "xAxisData":xAxisData, "seriesData":seriesData};
+							
+							if(i == 0){
+								var div = document.getElementById("box0");
+								must_settle_contract_num_barChart.initData(div, paras);
+							}
+							if(i == 1){
+								var div = document.getElementById("box1");
+								alr_settle_contract_num_barChart.initData(div, paras);
+							}
+							if(i == 2){
+								var div = document.getElementById("box2");
+								uncleared_num_barChart.initData(div, paras);
+							}
+							if(i == 3){
+								var obj = new Object();
+								obj.name = data.show_res_body.type;
+								obj.type = "bar";
+								obj.data = seriesData;
+								var series = new Array();
+								series.push(obj);
+									paras.series = series;
+								var div = document.getElementById("box3");
+								must_settle_contract_principal_barChart.initData(div, paras);
+							}
+							if(i == 4){
+								var obj = new Object();
+								obj.name = data.show_res_body.type;
+								obj.type = "bar";
+								obj.data = seriesData;
+								var series = new Array();
+								series.push(obj);
+									paras.series = series;
+									
+								var div = document.getElementById("box4");
+								alr_settle_contract_principal_barChart.initData(div, paras);
+							}
+							if(i == 5){
+								var obj = new Object();
+								obj.name = data.show_res_body.type;
+								obj.type = "bar";
+								obj.data = seriesData;
+								var series = new Array();
+								series.push(obj);
+									paras.series = series;
+									
+								var div = document.getElementById("box5");
+								uncleared_contract_principal_barChart.initData(div, paras);
+							}
+							
+						}
+	 					
+	 				}
+				});
+			}
+
+			function day(url, data, storeName){
+				
+				$.post(url, data, function(response){
+					console.log(response);
+					
+					var list = response.list;
+					var xAxisData = [];
+					xAxisData[0] = response.date;
+					//合同数量
+ 					for (var i = 0; i < list.length; i++) {
+						var size = list[i].length;
+						var seriesData = [];
+						seriesData[0] = size;
+						
+						var paras = {"storeName":storeName, "xAxisData":xAxisData, "seriesData":seriesData};
+						
+						if(i == 0){
+							var div = document.getElementById("box0");
+							must_settle_contract_num_barChart.initData(div, paras);
+
+							joinTd($("#table0 table tbody"), list[i]);
+						}
+						if(i == 1){
+							var div = document.getElementById("box1");
+							alr_settle_contract_num_barChart.initData(div, paras);
+							
+							joinTd($("#table1 table tbody"), list[i]);
+						}
+						if(i == 2){
+							var div = document.getElementById("box2");
+							uncleared_num_barChart.initData(div, paras);
+							
+							joinTd($("#table2 table tbody"), list[i]);
+						}
+						
+						
+					}
+					var moneys = new Array(); 
+					 moneys = response.moneys;
+					//合同金额
+ 					for (var j = 0; j < moneys.length; j++) {
+ 						var size = moneys[j];
+						var seriesData = [];
+						seriesData = size;
+						
+						var paras = {"storeName":storeName, "xAxisData":xAxisData, "seriesData":seriesData};
+						
+ 						if(j == 0){
+ 							var obj = new Object();
+ 							//obj.name = "应结清合同金额";
+							obj.type = "bar";
+							obj.data = [moneys[0]];
+							var series = new Array();
+							series.push(obj);
+								paras.series = series;
+								console.log(paras);
+							var div = document.getElementById("box3");
+							must_settle_contract_principal_barChart.initData(div, paras);
+
+						}
+						if(j == 1){
+							var obj = new Object();
+ 							//obj.name = "已结清合同金额";
+							obj.type = "bar";
+							obj.data = [moneys[1]];
+							var series = new Array();
+							series.push(obj);
+								paras.series = series;
+							var div = document.getElementById("box4");
+							alr_settle_contract_principal_barChart.initData(div, paras);
+							
+						}
+						if(j == 2){
+							var obj = new Object();
+ 							//obj.name = "未结清合同金额";
+							obj.type = "bar";
+							obj.data = [moneys[2]];
+							var series = new Array();
+							series.push(obj);
+								paras.series = series;
+							var div = document.getElementById("box5");
+							uncleared_contract_principal_barChart.initData(div, paras);
+							
+						}
+ 					}
+ 					
+				});
+				switchShow($("#table0"));
+			}
+			
+			$("#box0").click(function(){
+				switchShow($("#table0"));
+			})
+			$("#box1").click(function(){
+				switchShow($("#table1"));
+			})
+			$("#box2").click(function(){
+				switchShow($("#table2"));
+			})
+			$("#box3").click(function(){
+				switchShow($("#table0"));
+			})
+			$("#box4").click(function(){
+				switchShow($("#table1"));
+			})
+			$("#box5").click(function(){
+				switchShow($("#table2"));
+			})
+			
+			
+			function switchShow(e){
+				$(e).show();
+				$(e).siblings().hide();
+				
+				$("#myModal").find(".modal-body").empty();
+				var data = $(e).clone();
+				$(data).find("table").css({"font-size":"15px", "color":"black"});
+				$("#myModal").find(".modal-body").append(data);
+			}
+			
+			
+			
+			
+			
+			
+			
+			function joinTd(e, list){
+				$(e).empty();
+				for(var j=0; j< list.length; j++){
+					var obj = list[j];
+					var arr = new Array();
+					arr.push("<td>"+obj.short_name+"</td>");
+					arr.push("<td>"+obj.cus_contract_no+"</td>");
+					arr.push("<td>"+obj.cus_name+"</td>");
+					arr.push("<td>"+obj.cus_id_no+"</td>");
+					arr.push("<td>"+obj.cus_phone+"</td>");
+					arr.push("<td>"+obj.borrowing_amount+"</td>");
+					
+					$(e).append("<tr>"+arr.join(",")+"</tr>");
+				}
+			}
+			
+			
+			
+			
+		})
+	</script>
+	
+	
+</body>
+
+</html>

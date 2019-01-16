@@ -1,0 +1,1519 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta content="" name="description" />
+<meta content="webthemez" name="author" />
+<title>总数据</title>
+<link rel="stylesheet" type="text/css" href="css/grid.css" />
+<link rel="stylesheet" type="text/css" href="css/totalData.css" />
+</head>
+<body>
+	<div id="51vui-View">
+		<div id="page-51vui-View">
+			<div id="page-inner">
+				<!-- 头部 -->
+				<div class="row ">
+					<div class="headerBar">
+						<div class="col-md-6 col-sm-12 col-xs-12">
+							<h3 class="h3">数据汇总</h3>
+						</div>
+						<div class="col-md-6 col-sm-12 col-xs-12">
+							<div class="years">
+								<input type="text" class="spinnerExample" />
+							</div>
+							<div class="profile">
+								<div class="filter-box">
+									<div class="filter-text">
+										<input class="filter-title" type="text" readonly
+											placeholder="pleace select" /> <i
+											class="icon icon-filter-arrow"></i>
+									</div>
+									<select name="filter"> #for(s : storeList)
+										<option value="s_#(s.id)">#(s.short_name)</option> #end
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- //头部 -->
+
+				<!-- 概况 -->
+				<div class="row">
+					<div class="col-md-3 col-sm-12 col-xs-12">
+						<div class="board">
+							<div class="panel panel-primary">
+								<h3 class="panel-title">未结清合同数量</h3>
+								<div class="number">
+									<h3>#(uncleared_num)</h3>
+								</div>
+								<div id="budget"></div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-3 col-sm-12 col-xs-12">
+						<div class="board">
+							<div class="panel panel-primary">
+								<h3 class="panel-title">未结清合同金额</h3>
+								<div class="number">
+									<h3>#(uncleared_contract_principal)</h3>
+								</div>
+								<div id="fixation"></div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-3 col-sm-12 col-xs-12">
+						<div class="board">
+							<div class="panel panel-primary">
+								<h3 class="panel-title">剩余本金</h3>
+								<div class="number">
+									<h3>#(must_capital)</h3>
+								</div>
+								<div id="invisible"></div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-3 col-sm-12 col-xs-12">
+						<div class="board">
+							<div class="panel panel-primary">
+								<h3 class="panel-title">剩余利息</h3>
+								<div class="number">
+									<h3>#(must_interest)</h3>
+								</div>
+								<div id="itsum"></div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- //概况 -->
+
+
+
+
+				<!-- 存量数据 汇总 -->
+				<div class="row">
+					<div class="col-sm-6 col-xs-12">
+						<div class="panel panel-default chartJs">
+							<div class="panel-heading">
+								<div class="card-title">
+									<div class="title">存量数据汇总</div>
+								</div>
+							</div>
+							<div class="panel-body">
+								<table class="table table-hover table-bordered"
+									style="line-height: 6px;">
+									#for(t:totalList)
+									<tr>
+										<td>#(t.key_value)</td>
+										<td>#(t.value)</td>
+									</tr>
+									#end
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-xs-12">
+						<div class="panel panel-default chartJs">
+							<div class="panel-heading">
+								<div class="card-title">
+									<div class="title">备注</div>
+								</div>
+							</div>
+							<div class="panel-body">
+
+
+								<div class="easyui-panel comTable"
+									data-options="iconCls:'fa fa-save',collapsible:true,maximizable:true,closable:true">
+									<table class="table table-hover table-ash">
+										<thead>
+											<tr>
+												<th style="max-width: 25px; width: 25px;">#</th>
+												<th>字段</th>
+												<th>释义</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th scope="row">1</th>
+												<td>未结清合同数量</td>
+												<td>已审批合同，所有未结清合同数量</td>
+											</tr>
+											<tr>
+												<th scope="row">2</th>
+												<td>未还本金</td>
+												<td>已审批合同，所有未还本金汇总</td>
+											</tr>
+											<tr>
+												<th scope="row">3</th>
+												<td>未还利息</td>
+												<td>已审批合同，所有未还利息汇总</td>
+											</tr>
+											<tr>
+												<th scope="row">4</th>
+												<td>逾期合同数量</td>
+												<td>已审批合同，所有产生过逾期的合同数量</td>
+											</tr>
+											<tr>
+												<th scope="row">5</th>
+												<td>逾期费用</td>
+												<td>已审批合同，所有产生的逾期费用-已还逾期费用</td>
+											</tr>
+											<tr>
+												<th scope="row">6</th>
+												<td>其它费用</td>
+												<td>已审批合同，所有未还停车费、GPS费用、合同保管费等费用</td>
+											</tr>
+											<tr>
+												<th scope="row">7</th>
+												<td>转催收合同数量</td>
+												<td>已审批合同，合同状态为转催收，数量汇总</td>
+											</tr>
+											<tr>
+												<th scope="row">8</th>
+												<td>转催收未还本金</td>
+												<td>已审批合同，合同状态为转催收，统计所有分期未还本金总总额</td>
+											</tr>
+											<tr>
+												<th scope="row">14</th>
+												<td>进件数量</td>
+												<td>时间段内产生的合同数量汇总</td>
+											</tr>
+											<tr>
+												<th scope="row">15</th>
+												<td>通过数量</td>
+												<td>时间段内产生的合同，并且已经审批结束，合同数量汇总</td>
+											</tr>
+											<tr>
+												<th scope="row">16</th>
+												<td>需求金额</td>
+												<td>时间段内已审批结束，客户需求金额汇总</td>
+											</tr>
+											<tr>
+												<th scope="row">17</th>
+												<td>最终审批金额</td>
+												<td>时间段内已审批结束，放款金额汇总</td>
+											</tr>
+											<tr>
+												<th scope="row">18</th>
+												<td>合同金额</td>
+												<td>时间段内已审批结束，所有合同的合同金额汇总</td>
+											</tr>
+											<tr>
+												<th scope="row">19</th>
+												<td>应结清合同数量</td>
+												<td>时间段内应结清合同数量</td>
+											</tr>
+											<tr>
+												<th scope="row">20</th>
+												<td>结清合同数量</td>
+												<td>时间段内已结清合同数量</td>
+											</tr>
+											<tr>
+												<th scope="row">24</th>
+												<td>5万以内合同数量</td>
+												<td>时间段内合同金额在5万以内合同数量</td>
+											</tr>
+											<tr>
+												<th scope="row">25</th>
+												<td>5-10万合同数量</td>
+												<td>时间段内合同金额在5万以内合同数量</td>
+											</tr>
+											<tr>
+												<th scope="row">26</th>
+												<td>10-20万合同数量</td>
+												<td>时间段内合同金额在10-20万合同数量</td>
+											</tr>
+											<tr>
+												<th scope="row">27</th>
+												<td>20-30万合同数量</td>
+												<td>时间段内合同金额在20-30万合同数量</td>
+											</tr>
+											<tr>
+												<th scope="row">28</th>
+												<td>30万以上合同数量</td>
+												<td>时间段内合同金额在30万以上合同数量</td>
+											</tr>
+											<tr>
+												<th scope="row">1</th>
+												<td>应收</td>
+												<td>时间段内应收项目的数据汇总</td>
+											</tr>
+											<tr>
+												<th scope="row">2</th>
+												<td>实收</td>
+												<td>时间段内应收项目的数据汇总</td>
+											</tr>
+											<tr>
+												<th scope="row">3</th>
+												<td>比率</td>
+												<td>实收/应收 百分比</td>
+											</tr>
+											<tr>
+												<th scope="row">4</th>
+												<td>入职</td>
+												<td>时间段内入职人数汇总</td>
+											</tr>
+											<tr>
+												<th scope="row">5</th>
+												<td>离职</td>
+												<td>时间段内离职人数汇总</td>
+											</tr>
+											<tr>
+												<th scope="row">6</th>
+												<td>离职率</td>
+												<td>离职人数/(上期的总人数-离职人数)</td>
+											</tr>
+											<tr>
+												<th scope="row">7</th>
+												<td>调入</td>
+												<td>时间段内调入人数汇总</td>
+											</tr>
+											<tr>
+												<th scope="row">8</th>
+												<td>调出</td>
+												<td>时间段内调出人数汇总</td>
+											</tr>
+											<tr>
+												<th scope="row">9</th>
+												<td>上期人数</td>
+												<td>上周或上月人数</td>
+											</tr>
+											<tr>
+												<th scope="row">10</th>
+												<td>当前人数</td>
+												<td>当前人数汇总</td>
+											</tr>
+											<tr>
+												<th scope="row">11</th>
+												<td>出单人数</td>
+												<td>时间段内出单业务员数量汇总</td>
+											</tr>
+											<tr>
+												<th scope="row">12</th>
+												<td>出单件数</td>
+												<td>时间段内出单件数汇总</td>
+											</tr>
+											<tr>
+												<th scope="row">13</th>
+												<td>放款金额</td>
+												<td>时间段内放款金额汇总</td>
+											</tr>
+											<tr>
+												<th scope="row">14</th>
+												<td>出单率</td>
+												<td>出单人数/总的业务员人数 百分比</td>
+											</tr>
+											<tr>
+												<th scope="row">15</th>
+												<td>件均值</td>
+												<td>放款金额/出单件数</td>
+											</tr>
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+
+				</div>
+				<!-- //存量数据 汇总 -->
+
+				<!-- 实时数据图表 -->
+				<div class="row">
+					<div class="col-sm-6 col-xs-12">
+						<div class="panel panel-default chartJs">
+							<div class="panel-heading">
+								<div class="card-title">
+									<div class="title">实时数据(单位件)</div>
+								</div>
+							</div>
+							<div class="panel-body">
+								<span id="chartWork" class="chart"
+									style="width: 100%; height: 350px;"></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-xs-12">
+						<div class="panel panel-default chartJs">
+							<div class="panel-heading">
+								<div class="card-title">
+									<div class="title">人事数据(单位个)</div>
+								</div>
+							</div>
+							<div class="panel-body">
+								<span id="analysisChart" class="chart"
+									style="width: 100%; height: 350px;"></span>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+				<!-- //实时数据图表-->
+
+				<!--  图表-->
+				<div class="row">
+					<div class="col-md-6 col-xs-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">资金方</div>
+							<div class="panel-body">
+								<div id="wc-line-chart" style="width: 100%; height: 350px;"></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6 col-xs-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">出单</div>
+							<div class="panel-body">
+								<div id="defect-chart" style="width: 100%; height: 350px;"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="tableRow">
+							<div class="panel-heading">比率汇总</div>
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th field="x" width="50" align="center"></th>
+										<th colspan="3">今天</th>
+										<th colspan="3">昨天</th>
+										<th colspan="3">前天</th>
+										<th colspan="3">本周</th>
+										<th colspan="3">本月</th>
+									</tr>
+									<tr>
+										<th field="project" width="100" align="center">项目</th>
+										<th field="name2" width="50" align="center">应收</th>
+										<th field="name3" width="50" align="center">实收</th>
+										<th field="name4" width="50" align="center">比率</th>
+										<th field="name5" width="50" align="center">应收</th>
+										<th field="name6" width="50" align="center">实收</th>
+										<th field="name7" width="50" align="center">比率</th>
+										<th field="name8" width="50" align="center">应收</th>
+										<th field="name9" width="50" align="center">实收</th>
+										<th field="name10" width="50" align="center">比率</th>
+										<th field="name11" width="50" align="center">应收</th>
+										<th field="name12" width="50" align="center">实收</th>
+										<th field="name13" width="50" align="center">比率</th>
+										<th field="name14" width="50" align="center">应收</th>
+										<th field="name15" width="50" align="center">实收</th>
+										<th field="name16" width="50" align="center">比率</th>
+									</tr>
+
+								</thead>
+								<tbody>
+									<tr>
+										<td>本金</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+									</tr>
+									<tr>
+										<td>利息</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+									</tr>
+									<tr>
+										<td>产生逾期费</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+									</tr>
+									<tr>
+										<td>收回逾期费</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+									</tr>
+									<tr>
+										<td>其他费用</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+									</tr>
+
+
+								</tbody>
+							</table>
+
+
+						</div>
+					</div>
+				</div>
+				<!-- // 图表-->
+
+				<!-- /. PAGE INNER  -->
+			</div>
+			<!-- /. PAGE 51vui-View  -->
+		</div>
+	</div>
+	<!-- /. 51vui-View  -->
+	<script src="js/jquery2.1.1.js" type="text/javascript"></script>
+	<script src="js/echarts.min.js" type="text/javascript"></script>
+	<script src="js/jquery.spinner.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$('.spinnerExample').spinner({});
+		//这里是初始化下拉
+		$('.filter-box').selectFilter({
+			callBack : function(val) {
+				//返回选择的值
+				console.log(val + '-是返回的值')
+			}
+		});
+
+		(function($) {
+			$.fn.compSearchBox = function() {
+				$(function() {
+					$('#click_event').click(function() {
+						if ($('#hidden_enent').is(':hidden')) {
+							$(this).addClass("more_bg");
+							$('#hidden_enent').show();
+							$('#click_event').val('点击隐藏');
+						} else {
+							$(this).removeClass("more_bg");
+							$('#hidden_enent').hide();
+							$('#click_event').val('点击显示');
+						}
+					});
+					$('#click_event2').click(function() {
+						if ($('#hidden_enent2').is(':hidden')) {
+							$(this).addClass("more_bg");
+							$('#hidden_enent2').show();
+							$('#click_event2').val('点击隐藏');
+						} else {
+							$(this).removeClass("more_bg");
+							$('#hidden_enent2').hide();
+							$('#click_event2').val('点击显示');
+						}
+					});
+				});
+			}
+		})(jQuery);
+
+		$(document).click(
+				function() {
+					$("table :checkbox:first").change(
+							function() {
+								$(this).closest("table").find(
+										":checkbox:not(:first)").prop(
+										"checked", this.checked);
+							});
+				});
+
+		// 实时数据趋势
+		(function($) {
+			"use strict";
+			var cWidth = $("#chartWork").width();
+			var cHeight = $("#chartWork").height();
+			// console.log(cHeight);
+
+			// 未结清合同数量 budget
+			$("#budget").css("width", cWidth - 360)
+					.css("height", cHeight - 200);
+			var dom = document.getElementById("budget");
+			var myChart = echarts.init(dom);
+			option = {
+				tooltip : {
+					trigger : 'axis',
+					axisPointer : { // 坐标轴指示器，坐标轴触发有效
+						type : 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+					}
+				},
+				grid : {
+					left : '-200px',
+					containLabel : true
+				},
+				xAxis : {
+					type : 'value',
+					show : false,
+				},
+				yAxis : {
+					type : 'category',
+					show : false,
+					data : [ '未结清echarts合同数量' ]
+				},
+				series : [ {
+					name : '未还本金',
+					type : 'bar',
+					stack : '未结清合同数量',
+					barWidth : 10,
+					label : {
+						normal : {
+							show : true,
+							position : 'insideRight'
+						}
+					},
+					data : [ 540000 ]
+				}, {
+					name : '未还利息',
+					type : 'bar',
+					stack : '未结清合同数量',
+					label : {
+						normal : {
+							show : true,
+							position : 'insideRight'
+						}
+					},
+					data : [ 180000 ]
+				} ],
+				color : [ '#30A5FF', '#FABE28' ]
+			};
+			if (option && typeof option === "object") {
+				myChart.setOption(option, true);
+			}
+			// 逾期合同数量 fixation
+			$("#fixation").css("width", cWidth - 390).css("height",
+					cHeight - 200);
+			var dom = document.getElementById("fixation");
+			var myChart = echarts.init(dom);
+
+			option = {
+				tooltip : {
+					trigger : 'axis',
+					axisPointer : { // 坐标轴指示器，坐标轴触发有效
+						type : 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+					}
+				},
+				grid : {
+					left : '-100px',
+					containLabel : true
+				},
+				xAxis : {
+					type : 'value',
+					show : false,
+				},
+				yAxis : {
+					type : 'category',
+					show : false,
+					data : [ '逾期合同数量' ]
+				},
+				series : [ {
+					name : '逾期费用',
+					type : 'bar',
+					stack : '逾期合同数量',
+					barWidth : 10,
+					label : {
+						normal : {
+							show : true,
+							position : 'insideRight'
+						}
+					},
+					data : [ 270000 ]
+				}, {
+					name : '未还其他费用',
+					type : 'bar',
+					stack : '逾期合同数量',
+					label : {
+						normal : {
+							show : true,
+							position : 'insideRight'
+						}
+					},
+					data : [ 70000 ]
+				} ],
+				color : [ '#FF0000', '#FABE28' ]
+			};
+			if (option && typeof option === "object") {
+				myChart.setOption(option, true);
+			}
+			// 转催收合同数量 invisible
+			$("#invisible").css("width", cWidth - 320).css("height",
+					cHeight - 200);
+			var dom = document.getElementById("invisible");
+			var myChart = echarts.init(dom);
+			option = {
+				tooltip : {
+					trigger : 'axis',
+					axisPointer : { // 坐标轴指示器，坐标轴触发有效
+						type : 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+					}
+				},
+				grid : {
+					left : '-100px',
+					containLabel : true
+				},
+				xAxis : {
+					type : 'value',
+					show : false,
+				},
+				yAxis : {
+					type : 'category',
+					show : false,
+					data : [ '转催收合同数量' ]
+				},
+				series : [ {
+					name : '转催收未还本金',
+					type : 'bar',
+					stack : '转催收合同数量',
+					barWidth : 10,
+					label : {
+						normal : {
+							show : true,
+							position : 'insideRight'
+						}
+					},
+					data : [ 180000 ]
+				}, {
+					name : '转帐外资产',
+					type : 'bar',
+					stack : '转催收合同数量',
+					label : {
+						normal : {
+							show : true,
+							position : 'insideRight'
+						}
+					},
+					data : [ 90000 ]
+				} ],
+				color : [ '#30A5FF', '#FABE28' ]
+			};
+			if (option && typeof option === "object") {
+				myChart.setOption(option, true);
+			}
+			// 资金方合同数量 itsum
+			$("#itsum").css("width", cWidth - 350).css("height", cHeight - 200);
+			var dom = document.getElementById("itsum");
+			var myChart = echarts.init(dom);
+			option = {
+				tooltip : {
+					trigger : 'axis',
+					axisPointer : { // 坐标轴指示器，坐标轴触发有效
+						type : 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+					}
+				},
+				grid : {
+					left : '-100px',
+					containLabel : true
+				},
+				xAxis : {
+					type : 'value',
+					show : false,
+				},
+				yAxis : {
+					type : 'category',
+					show : false,
+					data : [ '资金方合同数量' ]
+				},
+				series : [ {
+					name : '应还本金',
+					type : 'bar',
+					stack : '资金方合同数量',
+					barWidth : 10,
+					label : {
+						normal : {
+							show : true,
+							position : 'insideRight'
+						}
+					},
+					data : [ 34543 ]
+				}, {
+					name : '应还利息',
+					type : 'bar',
+					stack : '资金方合同数量',
+					label : {
+						normal : {
+							show : true,
+							position : 'insideRight'
+						}
+					},
+					data : [ 100000 ]
+				} ],
+				color : [ '#30A5FF', '#FABE28' ]
+			};
+			if (option && typeof option === "object") {
+				myChart.setOption(option, true);
+			}
+
+			$("#chartWork").css("width", cWidth).css("height", cHeight);
+			var dom = document.getElementById("chartWork");
+			var myChart = echarts.init(dom);
+			var gain = 0.9;
+			var gap = 0;
+			var myColor = [ '#e63810', '#047AD4', '#FABE28', '#3DBB2B' ];
+			var myBgColor = [ 'rgba(230,56,16,0.4)', 'rgba(4,122,212,0.4)',
+					'rgba(61,187,43,0.4)', 'rgba(19,181,177,0.4)' ];
+			//柱子数据
+			var data = [ 98705, 98046, 85310, 79007 ];
+			var option = {
+				//   backgroundColor:'rgba(0,0,0,0.8)',
+				grid : {
+					left : '3%',
+					top : '10%',
+					right : '2%',
+					bottom : '5%',
+					containLabel : true
+				},
+				xAxis : [ {
+					type : 'category',
+					axisTick : {
+						show : false
+					},
+					axisLine : {
+						lineStyle : {
+							color : '#333333',
+						}
+					},
+					axisLabel : {
+						textStyle : {
+							color : function(param, index) {
+								return myColor[index]
+							},
+							fontSize : 13 * gain,
+						}
+					},
+					data : [ '申请数量', '通过数量', '应结清数量', '结清数量' ]
+				}, {
+					type : 'category',
+					axisLine : {
+						show : false
+					},
+					axisTick : {
+						show : false
+					},
+					axisLabel : {
+						show : false
+					},
+					splitArea : {
+						show : false
+					},
+					splitLine : {
+						show : false
+					},
+					data : []
+				}, ],
+				yAxis : {
+					type : 'value',
+					name : '单位：件',
+					nameGap : 35 + gap,
+					nameTextStyle : {
+						color : '#333333',
+						fontSize : 16 * gain,
+					},
+					axisTick : {
+						show : false
+					},
+					axisLine : {
+						show : false
+					},
+					splitLine : {
+						lineStyle : {
+							color : 'rgba(160,160,160,0.2)',
+						}
+					},
+					axisLabel : {
+						textStyle : {
+							color : 'rgba(255,255,255,0.4)',
+							fontSize : 14 * gain,
+						}
+					}
+				},
+				series : [ {
+					type : 'bar',
+					xAxisIndex : 1,
+					itemStyle : {
+						normal : {
+							show : true,
+							color : function(params) {
+								var num = myBgColor.length;
+								return myBgColor[params.dataIndex % num]
+							},
+							barBorderRadius : 50,
+							borderWidth : 0,
+							borderColor : '#333',
+						}
+					},
+					label : {
+						normal : {
+							show : true,
+							formatter : function(params) {
+								var stuNum = 0;
+								data.forEach(function(value, index, array) {
+									if (params.dataIndex == index) {
+										stuNum = value;
+									}
+								})
+								return stuNum;
+							},
+							position : 'top',
+							textStyle : {
+								color : function(params) {
+									var num = myBgColor.length;
+									return myBgColor[params.dataIndex % num]
+								},
+								fontSize : 25 * gain,
+							}
+						}
+					},
+					barWidth : '25%',
+					data : [ 100000, 100000, 100000, 100000 ]
+				}, {
+					type : 'bar',
+					itemStyle : {
+						normal : {
+							show : true,
+							color : function(params) {
+								var num = myColor.length;
+								return myColor[params.dataIndex % num]
+							},
+							barBorderRadius : 50,
+							borderWidth : 0,
+							borderColor : '#333',
+						}
+					},
+					label : {
+						normal : {
+							show : false,
+
+						}
+					},
+					barWidth : '25%',
+					data : data
+				} ]
+			};
+			if (option && typeof option === "object") {
+				myChart.setOption(option, true);
+			}
+
+			//人事数据
+			var dom = document.getElementById("analysisChart");
+			var myChart = echarts.init(dom);
+			option = {
+				title : {
+					text : '单位(个)',
+					textStyle : {
+						fontSize : 12
+					}
+				},
+				tooltip : {
+					trigger : 'axis'
+				},
+				legend : {
+					data : [ '入职', '离职', '挣值分析' ]
+				},
+				grid : {
+					left : '3%',
+					right : '4%',
+					bottom : '3%',
+					containLabel : true
+				},
+				xAxis : {
+					type : 'category',
+					data : [ '2018年2月', '2018年3月', '2018年4月', '2018年5月',
+							'2018年6月', '2018年7月', '2018年8月' ]
+				},
+				yAxis : {
+					type : 'value',
+					name : '数量'
+				},
+				series : [ {
+					name : '入职',
+					type : 'line',
+					step : 'start',
+					data : [ 90, 99, 169, 154, 188, 120, 189 ]
+				},
+
+				{
+					name : '离职',
+					type : 'line',
+					step : 'end',
+					data : [ 39, 150, 111, 87, 134, 178, 110 ]
+				} ],
+				color : [ '#30A5FF', '#FABE28' ]
+			};
+			if (option && typeof option === "object") {
+				myChart.setOption(option, true);
+			}
+			// 阶段分类
+			// 
+			var domWc = document.getElementById("wc-line-chart");
+			var wcChart = echarts.init(domWc);
+			option = {
+				backgroundColor : '',
+				tooltip : {
+					trigger : 'axis',
+					axisPointer : {
+						lineStyle : {
+							color : '#57617B'
+						}
+					}
+				},
+				grid : {
+					left : '30px',
+					right : '30px',
+					bottom : '30px',
+					top : '30px',
+					containLabel : true
+				},
+				xAxis : [
+						{
+							type : 'category',
+							boundaryGap : false,
+							axisLine : {
+								lineStyle : {
+									color : '#333333'
+								}
+							},
+							axisLabel : {
+								margin : 10,
+								textStyle : {
+									fontSize : 13,
+									color : '#333333'
+								}
+							},
+							axisTick : {
+								show : false
+							},
+							data : [ '一月', '二月', '三月', '四月', '五月', '六月', '七月',
+									'八月', '九月', '十月', '十一月', '十二月' ]
+						}, {
+							axisPointer : {
+								show : false
+							},
+							axisLine : {
+								lineStyle : {
+									color : '#0E2A43'
+								}
+							},
+							axisTick : {
+								show : false
+							},
+							position : 'bottom',
+							offset : 20
+						} ],
+				yAxis : [ {
+					type : 'value',
+					name : '单位（万元）',
+					axisTick : {
+						show : false
+					},
+					axisLine : {
+						lineStyle : {
+							color : '#0E2A43'
+						}
+					},
+					axisLabel : {
+						margin : 10,
+						textStyle : {
+							fontSize : 12,
+							color : '#333333'
+						}
+					},
+					splitLine : {
+						show : false,
+						lineStyle : {
+							color : '#57617B'
+						}
+					}
+				} ],
+				series : [
+						{
+							name : '资金方需退回金额',
+							type : 'line',
+							smooth : true,
+							stack : '资金方',
+							symbol : 'circle',
+							symbolSize : 5,
+							showSymbol : false,
+							animationDelay : 2000,
+							animationDuration : 1000,
+							markPoint : {
+								// symbol: 'image://url',
+								data : [ {
+									type : 'max',
+									name : '最大值'
+								} ],
+								animationDelay : 3000,
+								animationDuration : 1000
+							},
+							lineStyle : {
+								normal : {
+									width : 1,
+									color : {
+										type : 'linear',
+										x : 0,
+										y : 0,
+										x2 : 1,
+										y2 : 0,
+										colorStops : [ {
+											offset : 0,
+											color : 'red' // 0% 处的颜色
+										}, {
+											offset : 1,
+											color : 'grey' // 100% 处的颜色
+										} ],
+										globalCoord : false
+									// 缺省为 false
+									},
+									opacity : 0.9
+								}
+							},
+							areaStyle : {
+								normal : {
+									color : new echarts.graphic.LinearGradient(
+											0,
+											0,
+											0,
+											1,
+											[
+													{
+														offset : 0,
+														color : 'rgba(137, 189, 27, 0.3)'
+													},
+													{
+														offset : 0.8,
+														color : 'rgba(137, 189, 27, 0)'
+													} ], false),
+									shadowColor : 'rgba(0, 0, 0, 0.1)',
+									shadowBlur : 10
+								}
+							},
+							itemStyle : {
+								normal : {
+									color : 'rgb(137,189,27)',
+									borderColor : 'rgba(137,189,2,0.27)',
+									borderWidth : 12
+
+								}
+							},
+							data : [ 220, 182, 191, 134, 250, 120, 110, 125,
+									145, 122, 165, 122 ]
+						},
+						{
+							name : '资金方已还款金额',
+							type : 'line',
+							smooth : true,
+							symbol : 'circle',
+							stack : '资金方',
+							symbolSize : 5,
+							animationDelay : 1000,
+							animationDuration : 1000,
+							markPoint : {
+								data : [ {
+									type : 'max',
+									name : '最大值'
+								} ],
+								animationDelay : 2000,
+								animationDuration : 1000
+							},
+							showSymbol : false,
+							lineStyle : {
+								normal : {
+									width : 1,
+									color : {
+										type : 'linear',
+										x : 0,
+										y : 0,
+										x2 : 1,
+										y2 : 0,
+										colorStops : [ {
+											offset : 0,
+											color : 'red' // 0% 处的颜色
+										}, {
+											offset : 1,
+											color : 'yellow' // 100% 处的颜色
+										} ],
+										globalCoord : false
+									// 缺省为 false
+									},
+									opacity : 0.9
+								}
+							},
+							areaStyle : {
+								normal : {
+									color : new echarts.graphic.LinearGradient(
+											0,
+											0,
+											0,
+											1,
+											[
+													{
+														offset : 0,
+														color : 'rgba(0, 236, 212, 0.3)'
+													},
+													{
+														offset : 0.8,
+														color : 'rgba(0, 236, 212, 0)'
+													} ], false),
+									shadowColor : 'rgba(0, 0, 0, 0.1)',
+									shadowBlur : 10
+								}
+							},
+							itemStyle : {
+								normal : {
+									color : 'rgb(0,136,212)',
+									borderColor : 'rgba(0,136,212,0.2)',
+									borderWidth : 12
+
+								}
+							},
+							data : [ 120, 110, 125, 145, 122, 165, 122, 220,
+									282, 191, 134, 150 ]
+						},
+						{
+							name : '资金方应还款金额',
+							type : 'line',
+							stack : '资金方',
+							smooth : true,
+							symbol : 'circle',
+							symbolSize : 5,
+							showSymbol : false,
+							animationDelay : 0,
+							animationDuration : 1000,
+							markPoint : {
+								data : [ {
+									type : 'max',
+									name : '最大值'
+								} ],
+								animationDelay : 1000,
+								animationDuration : 1000
+							},
+							lineStyle : {
+								normal : {
+									width : 1,
+									color : {
+										type : 'linear',
+										x : 0,
+										y : 0,
+										x2 : 1,
+										y2 : 0,
+										colorStops : [ {
+											offset : 0,
+											color : 'red' // 0% 处的颜色
+										}, {
+											offset : 1,
+											color : 'yellowgreen' // 100% 处的颜色
+										} ],
+										globalCoord : false
+									// 缺省为 false
+									},
+									opacity : 0.9
+								}
+							},
+							areaStyle : {
+								normal : {
+									color : new echarts.graphic.LinearGradient(
+											0,
+											0,
+											0,
+											1,
+											[
+													{
+														offset : 0,
+														color : 'rgba(219, 50, 51, 0.3)'
+													},
+													{
+														offset : 0.8,
+														color : 'rgba(219, 50, 51, 0)'
+													} ], false),
+									shadowColor : 'rgba(0, 0, 0, 0.1)',
+									shadowBlur : 10
+								}
+							},
+							itemStyle : {
+								normal : {
+
+									color : 'rgb(219,50,51)',
+									borderColor : 'rgba(219,50,51,0.2)',
+									borderWidth : 12
+								}
+							},
+							data : [ 220, 182, 325, 145, 122, 191, 134, 150,
+									120, 110, 165, 122 ]
+						}, ]
+			};
+
+			if (option && typeof option === "object") {
+				wcChart.setOption(option, true);
+			}
+
+			// 采购分类
+
+			var domWc = document.getElementById("defect-chart");
+			var dfChart = echarts.init(domWc);
+			option = {
+				backgroundColor : "",
+				color : [ '#047AD4', '#FABE28', '#3DBB2B' ],
+
+				/*title: [{
+				    text: '出单率',
+				    left: '83%',
+				    top: '6%',
+				    textAlign: 'center',
+				    textStyle: {
+				        color: '#333333'
+				    }
+				}],*/
+				tooltip : {
+					trigger : 'axis'
+				},
+				legend : {
+					x : 300,
+					top : '7%',
+					textStyle : {
+						color : '#333333',
+					},
+					data : [ '出单人数', '当期人数', '出单件数' ]
+				},
+				grid : {
+					left : '1%',
+					right : '35%',
+					top : '16%',
+					bottom : '6%',
+					containLabel : true
+				},
+				toolbox : {
+					"show" : false,
+					feature : {
+						saveAsImage : {}
+					}
+				},
+				xAxis : {
+					type : 'category',
+					"axisLine" : {
+						lineStyle : {
+							color : '#aaaaaa'
+						}
+					},
+					"axisTick" : {
+						"show" : false
+					},
+					axisLabel : {
+						textStyle : {
+							color : '#333'
+						}
+					},
+					boundaryGap : false,
+					data : [ '一月', '二月', '三月', '四月', '五月', '六月', '七月' ]
+				},
+				yAxis : {
+					"axisLine" : {
+						lineStyle : {
+							color : '#aaaaaa'
+						}
+					},
+					splitLine : {
+						show : true,
+						lineStyle : {
+							color : '#aaaaaa'
+						}
+					},
+					"axisTick" : {
+						"show" : false
+					},
+					axisLabel : {
+						textStyle : {
+							color : '#333333'
+						}
+					},
+					type : 'value'
+				},
+				series : [ {
+					name : '当期人数',
+					smooth : true,
+					type : 'line',
+					symbolSize : 8,
+					symbol : 'circle',
+					data : [ 90, 50, 67, 93, 120, 82, 80 ]
+				}, {
+					name : '出单人数',
+					smooth : true,
+					type : 'line',
+					symbolSize : 8,
+					symbol : 'circle',
+					data : [ 70, 50, 50, 87, 90, 80, 70 ]
+				}, {
+					name : '出单件数',
+					smooth : true,
+					type : 'line',
+					symbolSize : 8,
+					symbol : 'circle',
+					data : [ 290, 200, 120, 232, 145, 200, 90 ]
+				}, {
+					type : 'pie',
+					center : [ '83%', '33%' ],
+					radius : [ '25%', '30%' ],
+					label : {
+						normal : {
+							position : 'center'
+						}
+					},
+					data : [ {
+						value : 335,
+						name : '来源分析',
+						itemStyle : {
+							normal : {
+								color : '#89BD1B'
+							}
+						},
+						label : {
+							normal : {
+								formatter : '{d} %',
+								textStyle : {
+									color : '#333333',
+									fontSize : 20
+
+								}
+							}
+						}
+					}, {
+						value : 180,
+						name : '占位',
+						tooltip : {
+							show : false
+						},
+						itemStyle : {
+							normal : {
+								color : '#C6C7C8'
+							}
+						},
+						label : {
+							normal : {
+								textStyle : {
+									color : '#333333',
+								},
+								formatter : '\n出单率'
+							}
+						}
+					} ]
+				},
+
+				{
+					type : 'pie',
+					center : [ '83%', '72%' ],
+					radius : [ '25%', '30%' ],
+					label : {
+						normal : {
+							position : 'center'
+						}
+					},
+					data : [ {
+						value : 435,
+						name : '来源分析',
+						itemStyle : {
+							normal : {
+								color : '#66AEE3'
+							}
+						},
+						label : {
+							normal : {
+								formatter : '{d} ',
+								textStyle : {
+									color : '#333333',
+									fontSize : 20
+
+								}
+							}
+						}
+					}, {
+						value : 100,
+						name : '占位',
+						tooltip : {
+							show : false
+						},
+						itemStyle : {
+							normal : {
+								color : '#C6C7C8'
+
+							}
+						},
+						label : {
+							normal : {
+								textStyle : {
+									color : '#333333',
+								},
+								formatter : '\n件均值'
+							}
+						}
+					} ]
+				} ]
+			}
+			if (option && typeof option === "object") {
+				dfChart.setOption(option, true);
+			}
+			// --------------------------
+		}(jQuery));
+	</script>
+</body>
+
+</html>

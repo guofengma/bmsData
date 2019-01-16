@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>未结清合同数量</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css"
+	href="/css/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="/css/easyui/themes/icon.css">
+<script type="text/javascript" src="/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="/js/jquery.easyui.min.js"></script>
+
+<style type="text/css">
+table, th, td {
+	border: 1px solid black;
+	padding: 10px, auto;
+	padding: 5px, 5px;
+	table-layout: fixed;
+	word-break: break-strict;
+	border-collapse: collapse;
+}
+
+.changeColor {
+	background-color: #97FFFF;
+}
+</style>
+
+
+</head>
+<body>
+	<div id="oneDiv">
+		<input id="store" name="store" value="" />
+	</div>
+	<div id="twoDiv">
+		<table id="oneTable">
+			<tr>
+				<td>未结清合同数量</td>
+				<td id="oneTd">24</td>
+			</tr>
+			<tr>
+				<td>1-3期</td>
+				<td id="twoTd">24</td>
+			</tr>
+			<tr>
+				<td>4-6期</td>
+				<td id="threeTd">24</td>
+			</tr>
+			<tr>
+				<td>7-12期</td>
+				<td id="fourTd">24</td>
+			</tr>
+			<tr>
+				<td>12期以上</td>
+				<td id="fiveTd">242</td>
+			</tr>
+
+		</table>
+
+	</div>
+	<div id="threeDiv">
+		<table id="dg"></table>
+	</div>
+</body>
+<script type="text/javascript">
+	$(function() {
+
+		$.ajax({
+			type : "get",
+			url : '/bigData/contract/noSettle/ajaxList',
+			dataType : "json",
+			success : function(json) {
+				$('#store').combobox({
+					data : json,
+					valueField : 'id',
+					textField : 'short_name'
+				});
+
+				for ( var key in json.type) {
+					console.log(key);
+					if (key == "one") {
+						$("#oneTd").text(json.type.one);
+						$("#oneTd").attr("name", key);
+					}
+					if (key == "two") {
+						$("#twoTd").text(json.type.two);
+						$("#twoTd").attr("name", key);
+					}
+					if (key == "three") {
+						$("#threeTd").text(json.type.three);
+						$("#threeTd").attr("name", key);
+					}
+					if (key == "four") {
+						$("#fourTd").text(json.type.four);
+						$("#fourTd").attr("name", key);
+					}
+					if (key == "five") {
+						$("#fiveTd").text(json.type.five);
+						$("#fiveTd").attr("name", key);
+					}
+				}
+
+				/* $("#oneTd").text(json.type.one);
+				$("#twoTd").text(json.type.two);
+				$("#threeTd").text(json.type.three);
+				$("#fourTd").text(json.type.four);
+				$("#fiveTd").text(json.type.five); */
+
+				$('#dg').datagrid({
+					data : json.desc,
+					columns : [ [ {
+						field : 'storeName',
+						title : '门店',
+						width : 100,
+						align : 'center'
+					}, {
+						field : 'contractno',
+						title : '合同编号',
+						width : 100,
+						align : 'center'
+					}, {
+						field : 'amount',
+						title : '合同金额',
+						width : 100,
+						align : 'center'
+					}, {
+						field : 'name',
+						title : '客户姓名',
+						width : 100,
+						align : 'center'
+					}, {
+						field : 'phone',
+						title : '手机号码',
+						width : 100,
+						align : 'center'
+					}, {
+						field : 'remainStage',
+						title : '剩余期数',
+						width : 100,
+						align : 'center'
+					}, {
+						field : 'remainPrinple',
+						title : '剩余本金',
+						width : 100,
+						align : 'center'
+					}, {
+						field : 'remainInterest',
+						title : '剩余利息',
+						width : 100,
+						align : 'center'
+					} ] ],
+					pageSize : 5,
+					pageNumber : 1,
+					pageList : [ 5, 10, 15 ],
+
+				});
+			}
+		});
+
+		$('#store').combobox({
+			onSelect : function(record) {
+				var url = "/bigData/contract/noSettle/ajaxListByStoreId";
+				$.post(url, {
+					storeId : record.id
+				}, function(json) {
+					for ( var key in json.type) {
+						if (key == "one") {
+							$("#oneTd").text(json.type.one);
+							$("#oneTd").attr("name", key);
+						}
+						if (key == "two") {
+							$("#twoTd").text(json.type.two);
+							$("#twoTd").attr("name", key);
+						}
+						if (key == "three") {
+							$("#threeTd").text(json.type.three);
+							$("#threeTd").attr("name", key);
+						}
+						if (key == "four") {
+							$("#fourTd").text(json.type.four);
+							$("#fourTd").attr("name", key);
+						}
+						if (key == "five") {
+							$("#fiveTd").text(json.type.five);
+							$("#fiveTd").attr("name", key);
+						}
+					}
+
+					$('#dg').datagrid({
+						data : json.desc,
+						columns : [ [ {
+							field : 'storeName',
+							title : '门店',
+							width : 100,
+							align : 'center'
+						}, {
+							field : 'contractno',
+							title : '合同编号',
+							width : 100,
+							align : 'center'
+						}, {
+							field : 'amount',
+							title : '合同金额',
+							width : 100,
+							align : 'center'
+						}, {
+							field : 'name',
+							title : '客户姓名',
+							width : 100,
+							align : 'center'
+						}, {
+							field : 'phone',
+							title : '手机号码',
+							width : 100,
+							align : 'center'
+						}, {
+							field : 'remainStage',
+							title : '剩余期数',
+							width : 100,
+							align : 'center'
+						}, {
+							field : 'remainPrinple',
+							title : '剩余本金',
+							width : 100,
+							align : 'center'
+						}, {
+							field : 'remainInterest',
+							title : '剩余利息',
+							width : 100,
+							align : 'center'
+						} ] ],
+						pageSize : 5,
+						pageNumber : 1,
+						pageList : [ 5, 10, 15 ],
+
+					});
+
+				});
+
+			}
+
+		});
+
+		$("#oneTable tr").click(function() {
+
+			var store = $('#store').combobox('getValue');
+			
+			if(store == ""){
+				$.messager.alert('提示','请选中门店！','info');
+				return;
+			}
+			
+			var $td = $(this).children().eq(1);
+			var type = $td.attr("name");
+
+			var url = "/bigData/contract/noSettle/ajaxListByTypeFlag";
+			$.post(url, {
+				storeId : store,
+				typeFlag : type
+			}, function(json) {
+				$('#dg').datagrid({
+					data : json.desc,
+					columns : [ [ {
+						field : 'storeName',
+						title : '门店',
+						width : 100,
+						align : 'center'
+					}, {
+						field : 'contractno',
+						title : '合同编号',
+						width : 100,
+						align : 'center'
+					}, {
+						field : 'amount',
+						title : '合同金额',
+						width : 100,
+						align : 'center'
+					}, {
+						field : 'name',
+						title : '客户姓名',
+						width : 100,
+						align : 'center'
+					}, {
+						field : 'phone',
+						title : '手机号码',
+						width : 100,
+						align : 'center'
+					}, {
+						field : 'remainStage',
+						title : '剩余期数',
+						width : 100,
+						align : 'center'
+					}, {
+						field : 'remainPrinple',
+						title : '剩余本金',
+						width : 100,
+						align : 'center'
+					}, {
+						field : 'remainInterest',
+						title : '剩余利息',
+						width : 100,
+						align : 'center'
+					} ] ],
+					pageSize : 5,
+					pageNumber : 1,
+					pageList : [ 5, 10, 15 ],
+				});
+			})
+
+		});
+
+		$("#oneTable tr").hover(function() {
+			$(this).addClass("changeColor");
+		}, function() {
+			$(this).removeClass("changeColor");
+		})
+
+	})
+</script>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>demo</title>
+<script type="text/javascript" src="../js/echarts.min.js"></script>
+<script type="text/javascript" src="../js/jquery.min.js">
+</script>
+</head>
+<body>
+	<input type="button" onclick="initData(10)" value="10">
+	<input type="button" onclick="initData(20)" value="20">
+	<input type="button" onclick="test()" value="test">
+	<div id="container"
+		style="height: 400px; -webkit-tap-highlight-color: transparent; user-select: none;"></div>
+	<div id="divResult"></div>
+	<script type="text/javascript">
+	var dom = document.getElementById("container");
+	var myChart = echarts.init(dom);
+	var app = {};
+	option = null;
+
+	function test(){
+		demoChart.initData(dom,10);		
+	}
+
+	demoChart = {
+		option:null,
+		div:null,
+		chart:null,
+		initData:function(div,obj){
+			this.div = div;
+			this.chart = echarts.init(this.div);
+			var demoChartObject = this;
+			this.option = {
+		    	xAxis: {
+		        	type: 'category',
+		        	data: []
+		    	},
+		    	yAxis: {
+		        	type: 'value'
+		    	},
+		    	series: [{
+		        	data: [],
+		        	type: 'line'
+		    	}]
+			}				
+			$.ajax({
+				type : "post",
+				url : 'getdata',
+				data : { "data":obj },
+				dataType : "json",
+				success : function(json) {		
+					console.log(json);
+					demoChartObject.process(demoChartObject,json);
+				}
+			});
+		},
+		process:function (chartObject,json){			
+			Array.prototype.push.apply(chartObject.option.xAxis.data, json.columns);
+			Array.prototype.push.apply(chartObject.option.series[0].data,json.datas);
+			chartObject.view();
+		},
+		view:function(){
+			this.chart.setOption(this.option, true);
+		}
+	}
+	/*
+	function initData(obj){		
+		option = {
+	    	xAxis: {
+	        	type: 'category',
+	        	data: []
+	    	},
+	    	yAxis: {
+	        	type: 'value'
+	    	},
+	    	series: [{
+	        	data: [],
+	        	type: 'line'
+	    	}]
+		}
+		if( parseInt(obj) % 2 == 0 ){
+			$.ajax({
+				type : "post",
+				url : 'demo/getdata',
+				data : { "data":obj },
+				dataType : "json",
+				success : function(json) {				
+					process(json,obj);
+				}
+			});
+		}
+		else{
+			$.ajax({
+				type : "post",
+				url : 'demo/getdata2',
+				data : { "data":obj },
+				dataType : "json",
+				success : function(json) {				
+					process(json,obj);
+				}
+			});
+		}	
+		 
+	}
+
+	function process(json,obj){
+		$("#divResult").append("<p>" + json.key + "," + obj + "</p>");
+	//apply 方法能劫持(<<Ajax in Action>> 书中用到"劫持"一语，很生动啊)另外一个对象的方法， 
+	//继承另外一个对象的属性。
+	// Array.prototype.push 可以实现两个数组合并
+	//可以学习 apply 跟 call的区别
+		Array.prototype.push.apply(option.xAxis.data, json.columns);
+		Array.prototype.push.apply(option.series[0].data,json.datas);
+		view(option);
+	}
+
+	function view(option){
+		myChart.setOption(option, true);
+	}
+	
+	*/
+</script>
+</body>
+</html>
